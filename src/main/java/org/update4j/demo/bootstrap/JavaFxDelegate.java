@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 public class JavaFxDelegate extends Application implements Delegate {
 
+        public static String CONFIG_URL="https://agilhard-oss.github.io/demo/business/config.xml";
+
 	@Override
 	public long version() {
 		return 0;
@@ -42,13 +44,15 @@ public class JavaFxDelegate extends Application implements Delegate {
 	public void init() {
 		System.setProperty("suppress.warning", "true");
 
+
+		final Class<?> clazz=icons.ClassAnchor.class;
 		List<String> sizes = List.of("tiny", "small", "medium", "large", "xlarge");
 		images = sizes.stream()
-						.map(s -> ("/icons/update4j-icon-" + s + ".png"))
-						.map(s -> getClass().getResource(s).toExternalForm())
+						.map(s -> ("update4j-icon-" + s + ".png"))
+						.map(s -> clazz.getResource(s).toExternalForm())
 						.map(Image::new)
 						.collect(Collectors.toList());
-		inverted = new Image("/icons/update4j-icon-invert.png");
+		inverted = new Image(clazz.getResource("/icons/update4j-icon-invert.png").toExternalForm());
 	}
 
 	@Override
@@ -61,7 +65,8 @@ public class JavaFxDelegate extends Application implements Delegate {
 		primaryStage.setMinHeight(500);
 
 		
-		URL configUrl = new URL("http://docs.update4j.org/demo/business/config.xml");
+		URL configUrl = new URL(CONFIG_URL);
+
 		Configuration config = null;
 		try (Reader in = new InputStreamReader(configUrl.openStream(), StandardCharsets.UTF_8)) {
 			config = Configuration.read(in);

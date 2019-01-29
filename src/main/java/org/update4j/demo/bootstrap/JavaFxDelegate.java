@@ -57,27 +57,21 @@ public class JavaFxDelegate extends Application implements Delegate {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Injector injector = new Injector();
-		injector.primaryStage = primaryStage;
-		injector.inverted = inverted;
-		
 		primaryStage.setMinWidth(650);
 		primaryStage.setMinHeight(500);
-
 		
 		URL configUrl = new URL(CONFIG_URL);
-
 		Configuration config = null;
 		try (Reader in = new InputStreamReader(configUrl.openStream(), StandardCharsets.UTF_8)) {
 			config = Configuration.read(in);
 		} catch (IOException e) {
 			System.err.println("Could not load remote config, falling back to local.");
-			try(Reader in = Files.newBufferedReader(Paths.get("business/config.xml"))) {
+			try (Reader in = Files.newBufferedReader(Paths.get("business/config.xml"))) {
 				config = Configuration.read(in);
 			}
 		}
 
-		StartupView startup = new StartupView(config, injector);
+		StartupView startup = new StartupView(config, primaryStage);
 
 		Scene scene = new Scene(startup);
 		scene.getStylesheets().add(getClass().getResource("root.css").toExternalForm());

@@ -2,9 +2,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>jpackager-update4j-maven-example</groupId>
+	<groupId>net.agilhard.jpacktool.demo</groupId>
 	<artifactId>demo-bootstrap</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
+
 	<properties>
 	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	  <maven.compiler.source>11</maven.compiler.source>
@@ -30,12 +31,12 @@
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
-			<version>11.0.1</version>
+			<version>12-ea+11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
-			<version>11.0.1</version>
+			<version>12-ea+11</version>
 		</dependency>
 	</dependencies>
 </project>

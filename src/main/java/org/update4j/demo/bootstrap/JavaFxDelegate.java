@@ -20,8 +20,9 @@ import javafx.stage.Stage;
 
 public class JavaFxDelegate extends Application implements Delegate {
 
-        public static String CONFIG_URL="https://agilhard-oss.github.io/demo/business/config.xml";
-
+    public static String CONFIG_URL="http://localhost:8080/demo/business/update4j_net.agilhard.jpacktool.demo_demo-business-jpacktool-business.xml";
+    public static String LOCAL_CONFIG="conf/update4j_net.agilhard.jpacktool.demo_demo-business-business.xml";
+    
 	@Override
 	public long version() {
 		return 0;
@@ -66,7 +67,7 @@ public class JavaFxDelegate extends Application implements Delegate {
 			config = Configuration.read(in);
 		} catch (IOException e) {
 			System.err.println("Could not load remote config, falling back to local.");
-			try (Reader in = Files.newBufferedReader(Paths.get("business/config.xml"))) {
+			try (Reader in = Files.newBufferedReader(Paths.get(LOCAL_CONFIG))) {
 				config = Configuration.read(in);
 			}
 		}
